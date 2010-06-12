@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>DefaultValue</key>
+		<string>ctrl</string>
+		<key>Key</key>
+		<string>keyCombo</string>
+		<key>Title</key>
+		<string>Key Combo</string>
+		<key>Titles</key>
+		<array>
+			<string>Use Control</string>
+			<string>Use Option</string>
+			<string>Use Control-Option</string>
+		</array>
+		<key>Type</key>
+		<string>RadioButtons</string>
+		<key>Values</key>
+		<array>
+			<string>ctrl</string>
+			<string>opt</string>
+			<string>ctrlopt</string>
+		</array>
+	</dict>
+</array>
+</plist>
