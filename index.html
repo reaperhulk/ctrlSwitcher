@@ -1,17 +1,25 @@
 <script type="text/javascript">
 safari.application.addEventListener("message",captureMessageEvent,false);
 
-var globalCtrlStatus = false
+var globalCtrlStatus = false;
+var globalOptStatus = false;
+
 function captureMessageEvent(event) {
 	if (event.name == 'switchTabs') {
-		var window = safari.application.activeBrowserWindow
-		var index = event.message
-		window.tabs[index].activate()
-	} else if (event.name == 'ctrlStatusUpdate') {
-		globalCtrlStatus = event.message
-		for (var i=0;i<safari.application.activeBrowserWindow.tabs.length;i++) {
-			safari.application.activeBrowserWindow.tabs[i].page.dispatchMessage("globalCtrlStatus", globalCtrlStatus);
+		var requiredKeys = safari.extension.settings.getItem("keyCombo");
+		if (
+		(requiredKeys == 'ctrl' && globalCtrlStatus == true) || 
+		(requiredKeys == 'opt' && globalOptStatus == true) || 
+		(requiredKeys == 'ctrlopt' && globalOptStatus == true && globalCtrlStatus == true)
+		) {
+			var window = safari.application.activeBrowserWindow;
+			var index = event.message;
+			window.tabs[index].activate();
 		}
+	} else if (event.name == 'ctrlStatusUpdate') {
+		globalCtrlStatus = event.message;
+	} else if (event.name == 'optStatusUpdate') {
+		globalOptStatus = event.message;
 	}
 }
 
