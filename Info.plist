@@ -16,13 +16,6 @@
 	<string>1</string>
 	<key>Chrome</key>
 	<dict>
-		<key>Bars</key>
-		<array>
-			<dict>
-				<key>Filename</key>
-				<string>bar.html</string>
-			</dict>
-		</array>
 		<key>Global Page</key>
 		<string>index.html</string>
 	</dict>
