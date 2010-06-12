@@ -1,0 +1,19 @@
+<script type="text/javascript">
+safari.application.addEventListener("message",captureMessageEvent,false);
+
+var globalCtrlStatus = false
+function captureMessageEvent(event) {
+	if (event.name == 'switchTabs') {
+		var window = safari.application.activeBrowserWindow
+		var index = event.message
+		window.tabs[index].activate()
+	} else if (event.name == 'ctrlStatusUpdate') {
+		globalCtrlStatus = event.message
+		for (var i=0;i<safari.application.activeBrowserWindow.tabs.length;i++) {
+			safari.application.activeBrowserWindow.tabs[i].page.dispatchMessage("globalCtrlStatus", globalCtrlStatus);
+		}
+	}
+}
+
+
+</script>
