@@ -1,20 +1,22 @@
 window.addEventListener('keydown',checkKeyDown,false);
-window.addEventListener('keyup',checkKeyUp,false);
+safari.self.addEventListener("message", handleMessage, false);
 
+var keyCombo = 'ctrl'; //default prior to fetching the valid one
 
-/*
-by dispatching events when ctrl/opt chang status we can maintain global knowledge across all 
-tabs of the meta key keydown/keyup status. this way if you hit ctrl/opt-1 and then immediately 
-press 2 to go to another tab it will work properly
-*/
+getKeyCombo();
+
+function getKeyCombo() {
+	safari.self.tab.dispatchMessage('getKeyCombo','');
+}
+
+function handleMessage(event) {
+	if(event.name == 'keyCombo') {
+		keyCombo = event.message;
+	}
+}
+
 function checkKeyDown(event) {
 	switch(event.keyCode) {
-		case 17:
-			safari.self.tab.dispatchMessage('ctrlStatusUpdate',true);
-		break;
-		case 18:
-			safari.self.tab.dispatchMessage('optStatusUpdate',true);
-		break;
 		case 49:
 		case 50:
 		case 51:
@@ -25,17 +27,25 @@ function checkKeyDown(event) {
 		case 56:
 		case 57:
 		case 58:
-			safari.self.tab.dispatchMessage('switchTabs',event.keyCode-49);
+			/*
+			get the current keyCombo again to be safe.
+			I'd rather propagate via the change event but i can't get that to work right now
+			in practice this means if you change the pref you'll have to press the new key combo
+			twice to make it work properly
+			*/
+			getKeyCombo();
+			if (
+			(keyCombo == 'ctrl' && event.ctrlKey == true) || 
+			(keyCombo == 'opt' && event.altKey == true) || 
+			(keyCombo == 'ctrlopt' && event.altKey == true && event.ctrlKey == true) || 
+			(keyCombo == 'cmd' && event.metaKey == true)
+			) {
+				event.stopPropagation();
+				event.preventDefault();
+				safari.self.tab.dispatchMessage('switchTabs',event.keyCode);
+			}
 		break;
 		default:
 		//do nothing
-	}
-}
-
-function checkKeyUp(event) {
-	if(event.keyCode == 17) {
-		safari.self.tab.dispatchMessage('ctrlStatusUpdate',false);
-	} else if(event.keyCode == 18) {
-		safari.self.tab.dispatchMessage('optStatusUpdate',false);
 	}
 }

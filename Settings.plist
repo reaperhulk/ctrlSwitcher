@@ -12,8 +12,8 @@
 		<key>Titles</key>
 		<array>
 			<string>Use Control</string>
-			<string>Use Option</string>
-			<string>Use Control-Option</string>
+			<string>Use Option/Alt</string>
+			<string>Use Control-Option/Alt</string>
 		</array>
 		<key>Type</key>
 		<string>RadioButtons</string>
