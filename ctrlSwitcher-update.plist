@@ -10,11 +10,11 @@
        <key>Developer Identifier</key>
        <string>QNW3Q9S88V</string>
        <key>CFBundleVersion</key>
-       <string>3</string>
+       <string>4</string>
        <key>CFBundleShortVersionString</key>
-       <string>1.2</string>
+       <string>1.2.1</string>
        <key>URL</key>
-       <string>http://github.com/downloads/reaperhulk/ctrlSwitcher/ctrlSwitcher.safariextz</string>
+       <string>http://github.com/downloads/reaperhulk/ctrlSwitcher/ctrlSwitcher-1.2.1.safariextz</string>
      </dict>
    </array>
 </dict>
