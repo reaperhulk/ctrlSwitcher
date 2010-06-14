@@ -46,6 +46,6 @@
 	<key>Update Manifest URL</key>
 	<string>http://github.com/reaperhulk/ctrlSwitcher/raw/master/ctrlSwitcher-update.plist</string>
 	<key>Website</key>
-	<string>http://langui.sh</string>
+	<string>http://langui.sh/safari-extensions/</string>
 </dict>
 </plist>
