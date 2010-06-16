@@ -1,5 +1,6 @@
 <script type="text/javascript">
 safari.application.addEventListener("message",captureMessageEvent,false);
+safari.extension.settings.addEventListener("change", settingChanged, false);
 
 function captureMessageEvent(event) {
 	if (event.name == 'switchTabs') {
@@ -8,6 +9,20 @@ function captureMessageEvent(event) {
 		window.tabs[index].activate();
 	} else if (event.name == 'getKeyCombo') {
 		safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("keyCombo", safari.extension.settings.getItem('keyCombo'));
+	}
+}
+
+function settingChanged(event) {
+	dispatchAll('keyCombo',event.newValue);
+}
+
+function dispatchAll(messageName, messageData) {
+	for (var i=0;i<safari.application.browserWindows.length;i++) {
+		var browserWindow = safari.application.browserWindows[i];
+		for (var j=0;j<browserWindow.tabs.length;j++) {
+			var tab = browserWindow.tabs[j];
+			tab.page.dispatchMessage(messageName, messageData);
+		}
 	}
 }
 

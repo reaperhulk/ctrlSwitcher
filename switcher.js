@@ -33,7 +33,6 @@ function checkKeyDown(event) {
 			in practice this means if you change the pref you'll have to press the new key combo
 			twice to make it work properly
 			*/
-			getKeyCombo();
 			if (
 			(keyCombo == 'ctrl' && event.ctrlKey == true) || 
 			(keyCombo == 'opt' && event.altKey == true) || 
