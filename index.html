@@ -5,8 +5,7 @@ safari.extension.settings.addEventListener("change", settingChanged, false);
 function captureMessageEvent(event) {
 	if (event.name == 'switchTabs') {
 		var window = safari.application.activeBrowserWindow;
-		var index = event.message-49;
-		window.tabs[index].activate();
+		window.tabs[event.message].activate();
 	} else if (event.name == 'getKeyCombo') {
 		safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("keyCombo", safari.extension.settings.getItem('keyCombo'));
 	}
