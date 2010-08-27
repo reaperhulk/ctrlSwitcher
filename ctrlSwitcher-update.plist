@@ -10,9 +10,9 @@
        <key>Developer Identifier</key>
        <string>QNW3Q9S88V</string>
        <key>CFBundleVersion</key>
-       <string>8</string>
+       <string>9</string>
        <key>CFBundleShortVersionString</key>
-       <string>1.4</string>
+       <string>1.5</string>
        <key>URL</key>
        <string>http://langui.sh/extensions/ctrlSwitcher.safariextz</string>
      </dict>

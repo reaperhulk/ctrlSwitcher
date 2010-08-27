@@ -16,7 +16,7 @@ function handleMessage(event) {
 }
 
 function checkKeyDown(event) {
-	var tab;
+	var keyCode;
 	switch(event.keyCode) {
 		case 49: //1
 		case 50: //2
@@ -27,47 +27,26 @@ function checkKeyDown(event) {
 		case 55: //7
 		case 56: //8
 		case 57: //9
-			tab = event.keyCode - 49;
-		break;
 		case 48: //0
-			//tabs are zero indexed.
-			tab = 9;
-		break;
+		case 189: // -
+		case 187: // =
 		case 229: //this keycode fires for some reason the first time you push ctrl-q...need to investigate why. for now, let's capture.
 		case 81: //q
-			tab = 10;
-		break;
 		case 87: //w
-			tab = 11;
-		break;
 		case 69: //e
-			tab = 12;
-		break;
 		case 82: //r
-			tab = 13;
-		break;
 		case 84: //t
-			tab = 14;
-		break;
 		case 89: //y
-			tab = 15;
-		break;
 		case 85: //u
-			tab = 16;
-		break;
 		case 73: //i
-			tab = 17;
-		break;
 		case 79: //o
-			tab = 18;
-		break;
 		case 80: //p
-			tab = 19;
+			keyCode = event.keyCode;
 		break;
 		default:
 		//do nothing
 	}
-	if(tab != undefined) {
+	if(keyCode != undefined) {
 		if (
 		(keyCombo == 'ctrl' && event.ctrlKey == true) || 
 		(keyCombo == 'opt' && event.altKey == true) || 
@@ -76,7 +55,7 @@ function checkKeyDown(event) {
 		) {
 			event.stopPropagation();
 			event.preventDefault();
-			safari.self.tab.dispatchMessage('switchTabs',tab);
+			safari.self.tab.dispatchMessage('switchTabs',keyCode);
 		}
 	}
 }

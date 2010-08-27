@@ -24,5 +24,29 @@
 			<string>ctrlopt</string>
 		</array>
 	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<real>189</real>
+		<key>Key</key>
+		<string>lastTab</string>
+		<key>Title</key>
+		<string>Switch To Last Tab Key</string>
+		<key>Titles</key>
+		<array>
+			<string>9</string>
+			<string>0</string>
+			<string>-</string>
+			<string>=</string>
+		</array>
+		<key>Type</key>
+		<string>PopUpButton</string>
+		<key>Values</key>
+		<array>
+			<real>57</real>
+			<real>48</real>
+			<real>189</real>
+			<real>187</real>
+		</array>
+	</dict>
 </array>
 </plist>
