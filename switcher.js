@@ -51,7 +51,8 @@ function checkKeyDown(event) {
 		(keyCombo == 'ctrl' && event.ctrlKey == true) || 
 		(keyCombo == 'opt' && event.altKey == true) || 
 		(keyCombo == 'ctrlopt' && event.altKey == true && event.ctrlKey == true) || 
-		(keyCombo == 'cmd' && event.metaKey == true)
+		(keyCombo == 'cmd' && event.metaKey == true) ||
+		(keyCombo == 'cmdopt' && event.metaKey == true && event.altKey == true)
 		) {
 			event.stopPropagation();
 			event.preventDefault();
