@@ -29,21 +29,21 @@ safari.application.addEventListener("message",captureMessageEvent,false);
 safari.extension.settings.addEventListener("change", settingChanged, false);
 
 function captureMessageEvent(event) {
-	if (event.name == 'switchTabs') {
-		switchTab(event.message);
-	} else if (event.name == 'getKeyCombo') {
-		safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("keyCombo", safari.extension.settings.getItem('keyCombo'));
-	}
+    if (event.name == 'switchTabs') {
+        switchTab(event.message);
+    } else if (event.name == 'getKeyCombo') {
+        safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("keyCombo", safari.extension.settings.getItem('keyCombo'));
+    }
 }
 
 function switchTab(keyCode) {
-	var currentWindow = safari.application.activeBrowserWindow;
-	if(safari.extension.settings.lastTab == keyCode) {
-		var lastTabIndex = currentWindow.tabs.length-1;
-		currentWindow.tabs[lastTabIndex].activate();
-		return;
-	}
-	var tab;
+    var currentWindow = safari.application.activeBrowserWindow;
+    if(safari.extension.settings.lastTab == keyCode) {
+        var lastTabIndex = currentWindow.tabs.length-1;
+        currentWindow.tabs[lastTabIndex].activate();
+        return;
+    }
+    var tab;
     if (keyCode == 37 || keyCode == 39) {
         var arrowKeys = safari.extension.settings.getItem('arrowKeys');
         if (arrowKeys == true) {
@@ -52,62 +52,62 @@ function switchTab(keyCode) {
             return;
         }
     }
-	switch(keyCode) {
-		case 49: //1
-		case 50: //2
-		case 51: //3
-		case 52: //4
-		case 53: //5
-		case 54: //6
-		case 55: //7
-		case 56: //8
-		case 57: //9
-			tab = keyCode - 49;
-		break;
-		case 48: //0
-			//tabs are zero indexed.
-			tab = 9;
-		break;
-		case 229: //this keycode fires for some reason the first time you push ctrl-q...need to investigate why. for now, let's capture.
-		case 81: //q
-			tab = 10;
-		break;
-		case 87: //w
-			tab = 11;
-		break;
-		case 69: //e
-			tab = 12;
-		break;
-		case 82: //r
-			tab = 13;
-		break;
-		case 84: //t
-			tab = 14;
-		break;
-		case 89: //y
-			tab = 15;
-		break;
-		case 85: //u
-			tab = 16;
-		break;
-		case 73: //i
-			tab = 17;
-		break;
-		case 79: //o
-			tab = 18;
-		break;
-		case 80: //p
-			tab = 19;
-		break;
+    switch(keyCode) {
+        case 49: //1
+        case 50: //2
+        case 51: //3
+        case 52: //4
+        case 53: //5
+        case 54: //6
+        case 55: //7
+        case 56: //8
+        case 57: //9
+            tab = keyCode - 49;
         break;
-		default:
-		//do nothing
-	}
-	currentWindow.tabs[tab].activate();
+        case 48: //0
+            //tabs are zero indexed.
+            tab = 9;
+        break;
+        case 229: //this keycode fires for some reason the first time you push ctrl-q...need to investigate why. for now, let's capture.
+        case 81: //q
+            tab = 10;
+        break;
+        case 87: //w
+            tab = 11;
+        break;
+        case 69: //e
+            tab = 12;
+        break;
+        case 82: //r
+            tab = 13;
+        break;
+        case 84: //t
+            tab = 14;
+        break;
+        case 89: //y
+            tab = 15;
+        break;
+        case 85: //u
+            tab = 16;
+        break;
+        case 73: //i
+            tab = 17;
+        break;
+        case 79: //o
+            tab = 18;
+        break;
+        case 80: //p
+            tab = 19;
+        break;
+        break;
+        default:
+        //do nothing
+    }
+    currentWindow.tabs[tab].activate();
 }
 
 function backForwardTab(keyCode) {
-	var currentWindow = safari.application.activeBrowserWindow;
+    var currentWindow = safari.application.activeBrowserWindow;
     var numTabs = currentWindow.tabs.length;
     var activeTab = activeTabIndex();
     var tab;
@@ -139,19 +139,19 @@ function activeTabIndex() {
 }
 
 function settingChanged(event) {
-	if(event.key == 'keyCombo') {
-		dispatchAll('keyCombo',event.newValue);
-	}
+    if(event.key == 'keyCombo') {
+        dispatchAll('keyCombo',event.newValue);
+    }
 }
 
 function dispatchAll(messageName, messageData) {
-	for (var i=0;i<safari.application.browserWindows.length;i++) {
-		var browserWindow = safari.application.browserWindows[i];
-		for (var j=0;j<browserWindow.tabs.length;j++) {
-			var tab = browserWindow.tabs[j];
-			tab.page.dispatchMessage(messageName, messageData);
-		}
-	}
+    for (var i=0;i<safari.application.browserWindows.length;i++) {
+        var browserWindow = safari.application.browserWindows[i];
+        for (var j=0;j<browserWindow.tabs.length;j++) {
+            var tab = browserWindow.tabs[j];
+            tab.page.dispatchMessage(messageName, messageData);
+        }
+    }
 }
 
 </script>
