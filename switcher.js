@@ -18,6 +18,8 @@ function handleMessage(event) {
 function checkKeyDown(event) {
 	var keyCode;
 	switch(event.keyCode) {
+        case 37: // left arrow
+        case 39: // right arrow
 		case 49: //1
 		case 50: //2
 		case 51: //3
@@ -48,9 +50,9 @@ function checkKeyDown(event) {
 	}
 	if(keyCode != undefined) {
 		if (
-		(keyCombo == 'ctrl' && event.ctrlKey == true) || 
-		(keyCombo == 'opt' && event.altKey == true) || 
-		(keyCombo == 'ctrlopt' && event.altKey == true && event.ctrlKey == true) || 
+		(keyCombo == 'ctrl' && event.ctrlKey == true) ||
+		(keyCombo == 'opt' && event.altKey == true) ||
+		(keyCombo == 'ctrlopt' && event.altKey == true && event.ctrlKey == true) ||
 		(keyCombo == 'cmd' && event.metaKey == true) ||
 		(keyCombo == 'cmdopt' && event.metaKey == true && event.altKey == true)
 		) {

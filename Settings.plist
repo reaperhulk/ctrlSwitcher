@@ -50,5 +50,21 @@
 			<real>187</real>
 		</array>
 	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Arrow Keys</string>
+		<key>Type</key>
+		<string>Separator</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<false/>
+		<key>Key</key>
+		<string>arrowKeys</string>
+		<key>Title</key>
+		<string>Allow Arrow Key+Combo Navigation (Warning: Does not work with ctrl on Mac)</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
 </array>
 </plist>
